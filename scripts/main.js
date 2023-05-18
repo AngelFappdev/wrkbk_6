@@ -1,7 +1,12 @@
+
 document.addEventListener("DOMContentLoaded",()=>{
-    const image_list = document.getElementById("image_list")
-    const output = document.getElementById("output")
-    const clear = document.getElementById("clear")
+    const image_list = document.getElementById("image_list");
+    const output = document.getElementById("output");
+    const clear = document.getElementById("clear");
+    const year = document.getElementById("year");
+
+    const tbody = document.querySelector("#list tbody");
+    
 
 
     image_list.innerHTML = "<option> Make a Selection </option>"
@@ -13,6 +18,23 @@ document.addEventListener("DOMContentLoaded",()=>{
         image_list.appendChild(option);
     }); // end images for each
 
+    year.addEventListener("change", ()=>{
+        tbody.innerHTML = ""        // clear table rows
+        let selectedYear = year.selectedOptions[0].value;
+        //alert(selectedYear);
+        images.forEach(image =>{
+            if(selectedYear == image.year){
+
+            let row = tbody.insertRow (-1) // end of rows
+
+            let cellYear = row.insertCell(0)
+            cellYear.innerHTML = image.year;
+
+            let cellTitle = row.insertCell(0)
+            cellTitle.innerHTML = image.title;
+            }
+        })
+    });// ^^how to display the data onto the row 
 
     image_list.addEventListener("change", ()=>{ // ()=> is an anonyomus function that allows the change event to work
         if (image_list.selectedIndex <= 0){
