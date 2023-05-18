@@ -27,15 +27,21 @@ document.addEventListener("DOMContentLoaded",()=>{
         let cellTitle = row.insertCell(1)
         cellTitle.innerHTML = image.title;
 
+        let fullPath = "images/" + image.name;
+
         let cellThumb = row.insertCell(2)
-        cellThumb.innerHTML = image.name;
+        cellThumb.innerHTML = `
+        <a href = "${fullPath}" target = "_blank"
+            <img src="${fullPath}" class="thumb">
+        </a>
+        `;
         }
 
     year.addEventListener("change", ()=>{
         tbody.innerHTML = "" // clear table rows
         let selectedYear = year.selectedOptions[0].value;
         images.filter(i => i.year == selectedYear).forEach(addRow); // its filtering through the selected year. the for each is to display the data
-        
+
     }); // ^^how to display the data onto the row 
 
     image_list.addEventListener("change", ()=>{ // ()=> is an anonyomus function that allows the change event to work
