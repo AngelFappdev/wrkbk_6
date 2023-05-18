@@ -18,23 +18,25 @@ document.addEventListener("DOMContentLoaded",()=>{
         image_list.appendChild(option);
     }); // end images for each
 
+    function addRow(image){
+        let row = tbody.insertRow (-1) // end of rows
+
+        let cellYear = row.insertCell(0)
+        cellYear.innerHTML = image.year;
+
+        let cellTitle = row.insertCell(1)
+        cellTitle.innerHTML = image.title;
+
+        let cellThumb = row.insertCell(2)
+        cellThumb.innerHTML = image.name;
+        }
+
     year.addEventListener("change", ()=>{
-        tbody.innerHTML = ""        // clear table rows
+        tbody.innerHTML = "" // clear table rows
         let selectedYear = year.selectedOptions[0].value;
-        //alert(selectedYear);
-        images.forEach(image =>{
-            if(selectedYear == image.year){
-
-            let row = tbody.insertRow (-1) // end of rows
-
-            let cellYear = row.insertCell(0)
-            cellYear.innerHTML = image.year;
-
-            let cellTitle = row.insertCell(0)
-            cellTitle.innerHTML = image.title;
-            }
-        })
-    });// ^^how to display the data onto the row 
+        images.filter(i => i.year == selectedYear).forEach(addRow); // its filtering through the selected year. the for each is to display the data
+        
+    }); // ^^how to display the data onto the row 
 
     image_list.addEventListener("change", ()=>{ // ()=> is an anonyomus function that allows the change event to work
         if (image_list.selectedIndex <= 0){
