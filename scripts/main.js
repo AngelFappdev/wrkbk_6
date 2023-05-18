@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         let cellThumb = row.insertCell(2)
         cellThumb.innerHTML = `
-        <a href = "${fullPath}" target = "_blank"
+        <a href = "${fullPath}" target = "_blank">
             <img src="${fullPath}" class="thumb">
         </a>
         `;
